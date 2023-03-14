@@ -59,7 +59,7 @@ class Search extends Component {
               to={ `/album/${e.collectionId}` }
               data-testid={ `link-to-album-${e.collectionId}` }
             >
-              Details
+              More
             </Link>
           </div>
         ))}
