@@ -6,15 +6,26 @@ import Carregando from '../pages/Carregando';
 export default class MusicCard extends Component {
   state = {
     loading: false,
-    checked: false,
+    isChecked: false,
+  };
+
+  async componentDidMount() {
+    await this.favoriteCall();
+  }
+
+  favoriteCall = () => {
+    const { favorites, e } = this.props;
+    favorites.forEach((el) => {
+      if (e.trackId === el.trackId) {
+        this.setState({ isChecked: true });
+      }
+    });
   };
 
   render() {
     const { previewUrl, trackName,
       trackId, e, trackCensoredName } = this.props;
-
-    const { loading, checked } = this.state;
-
+    const { loading, isChecked } = this.state;
     if (loading) return <Carregando />;
     return (
       <div>
@@ -33,16 +44,16 @@ export default class MusicCard extends Component {
             Favorita
             <input
               type="checkbox"
-              name="checked"
-              checked={ checked }
+              name="isChecked"
+              checked={ isChecked }
               onChange={ async () => {
                 this.setState({ loading: true });
                 await addSong(e);
                 this.setState({ loading: false });
-                if (!checked) {
-                  this.setState({ checked: true });
+                if (!isChecked) {
+                  this.setState({ isChecked: true });
                 } else {
-                  this.setState({ checked: false });
+                  this.setState({ isChecked: false });
                 }
               } }
             />
@@ -59,4 +70,5 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   e: PropTypes.shape(PropTypes.string).isRequired,
+  favorites: PropTypes.shape(PropTypes.string).isRequired,
 };

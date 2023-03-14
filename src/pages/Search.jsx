@@ -50,8 +50,8 @@ class Search extends Component {
         )}
         {busca && <span>{`Resultado de álbuns de: ${artistName}`}</span>}
         {busca.length === 0 && searched && <span>Nenhum álbum foi encontrado</span>}
-        {busca.length > 0 && busca?.map((e) => (
-          <div key={ e.artistId }>
+        {busca.length > 0 && busca?.map((e, i) => (
+          <div key={ i }>
             <img src={ e.artworkUrl100 } alt={ e.collectionName } />
             <h3>{ e.collectionName }</h3>
             <h4>{ e.artistName }</h4>
