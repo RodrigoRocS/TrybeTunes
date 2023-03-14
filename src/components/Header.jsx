@@ -15,12 +15,14 @@ class Header extends Component {
 
   render() {
     const { user } = this.state;
-    const userElement = <p data-testid="header-user-name">{user}</p>;
+    const userElement = <p data-testid="header-user-name">{`Bem vindo, ${user}!`}</p>;
     return (
       <header data-testid="header-component">
-        <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
-        <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
-        <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
+        <nav>
+          <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
+          <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
+          <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
+        </nav>
         { user ? userElement : <Carregando />}
       </header>
     );
