@@ -24,7 +24,17 @@ class Album extends Component {
         <Header />
         {album && <h1 data-testid="artist-name">{data.artistName}</h1>}
         {album && <h3 data-testid="album-name">{data.collectionName}</h3>}
-        <MusicCard album={ album } />
+        {album && <img src={ data.artworkUrl100 } alt={ data.collectionName } />}
+        {album && album.map((e, i) => (
+          <MusicCard
+            key={ i }
+            trackCensoredName={ e.trackCensoredName }
+            previewUrl={ e.previewUrl }
+            trackName={ e.trackName }
+            trackId={ e.trackId }
+            e={ e }
+          />
+        ))}
       </div>
     );
   }

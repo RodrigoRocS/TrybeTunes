@@ -25,21 +25,14 @@ class App extends React.Component {
 
   onInputChange = ({ target }) => {
     const { name } = target;
-    let btn = '';
-    let mn = '';
-    if (name === 'login') {
-      btn = 'buttonEnable';
-      mn = MN;
-    } else {
-      btn = 'buttonEnable2';
-      mn = 2;
-    }
+    const btnClass = name === 'login' ? 'buttonEnable' : 'buttonEnable2';
+    const mnValue = name === 'login' ? MN : 2;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState(
       {
         [name]: value,
       },
-      () => this.EnableBtn(mn, btn, name),
+      () => this.EnableBtn(mnValue, btnClass, name),
     );
   };
 
