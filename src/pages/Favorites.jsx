@@ -32,7 +32,7 @@ class Favorites extends Component {
               trackId={ e.trackId }
               e={ e }
               favorites={ favoritesArray }
-              takeFavorites={ this.takeFavorites }
+              onFavoriteUpdate={ this.takeFavorites }
             />
           ))}
         </div>

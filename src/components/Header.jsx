@@ -15,7 +15,7 @@ class Header extends Component {
 
   render() {
     const { user } = this.state;
-    const userElement = <p data-testid="header-user-name">{`Bem vindo, ${user}!`}</p>;
+    const userElement = <p data-testid="header-user-name">{ user }</p>;
     return (
       <header data-testid="header-component">
         <nav>
