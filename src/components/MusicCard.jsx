@@ -24,7 +24,7 @@ export default class MusicCard extends Component {
 
   render() {
     const { previewUrl, trackName,
-      trackId, e, trackCensoredName } = this.props;
+      trackId, e, trackCensoredName, onFavoriteUpdate } = this.props;
     const { loading, isChecked } = this.state;
     if (loading) return <Carregando />;
     return (
@@ -50,6 +50,7 @@ export default class MusicCard extends Component {
                 this.setState({ loading: true });
                 if (isChecked) {
                   await removeSong(e);
+                  if (onFavoriteUpdate) await onFavoriteUpdate();
                 } else {
                   await addSong(e);
                 }
@@ -75,4 +76,9 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   e: PropTypes.shape(PropTypes.string).isRequired,
   favorites: PropTypes.shape(PropTypes.string).isRequired,
+  onFavoriteUpdate: PropTypes.func,
+};
+
+MusicCard.defaultProps = {
+  onFavoriteUpdate: null,
 };
